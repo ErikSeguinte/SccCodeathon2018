@@ -19,7 +19,16 @@ public class FileReader {
 
             while(scanner.hasNextLine()){
 
-               classes.add(scanner.nextLine());
+                String thisClass = scanner.nextLine().trim();
+
+                //lower Case
+                thisClass = thisClass.toLowerCase();
+
+                // remove internal spaces
+                thisClass = thisClass.replaceAll("\\s","");
+
+
+                classes.add(thisClass);
             }
         }
 
