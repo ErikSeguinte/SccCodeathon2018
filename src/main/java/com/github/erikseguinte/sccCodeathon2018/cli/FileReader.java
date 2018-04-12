@@ -1,13 +1,13 @@
 package com.github.erikseguinte.sccCodeathon2018.cli;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class FileReader {
 
-    public static ArrayList<String> getClassesFromResource(String filename){
+    public static HashSet<String> getClassesFromResource(String filename){
 
-        ArrayList<String> classes = new ArrayList<>();
+        HashSet<String> classes = new HashSet<>();
         ClassLoader classLoader = FileReader.class.getClassLoader();
 
         // Try-with-resources
