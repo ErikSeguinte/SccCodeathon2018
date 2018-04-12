@@ -1,0 +1,8 @@
+cisc310
+cisp301
+MATH400
+CISC323
+cisp360
+math401
+phys410
+engwr300
