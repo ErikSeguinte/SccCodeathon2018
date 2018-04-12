@@ -8,7 +8,7 @@ version '0.1'
 
 
 
-mainClassName = 'com.github.erikseguinte.sccCodeathon2018.cli.CliApp'
+mainClassName = 'com.github.erikseguinte.sccCodeathon2018.backend.CliApp'
 apply plugin: 'java'
 
 sourceCompatibility = 1.8

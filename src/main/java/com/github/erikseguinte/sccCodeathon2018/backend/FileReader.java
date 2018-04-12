@@ -1,4 +1,4 @@
-package com.github.erikseguinte.sccCodeathon2018.cli;
+package com.github.erikseguinte.sccCodeathon2018.backend;
 
 import java.util.HashSet;
 import java.util.Scanner;

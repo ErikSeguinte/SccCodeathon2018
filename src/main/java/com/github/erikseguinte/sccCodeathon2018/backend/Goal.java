@@ -1,6 +1,5 @@
-package com.github.erikseguinte.sccCodeathon2018.cli;
+package com.github.erikseguinte.sccCodeathon2018.backend;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class Goal {

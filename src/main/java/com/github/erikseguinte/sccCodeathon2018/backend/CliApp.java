@@ -1,8 +1,7 @@
-package com.github.erikseguinte.sccCodeathon2018.cli;
+package com.github.erikseguinte.sccCodeathon2018.backend;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.ArrayList;
 import java.util.HashSet;
 
 public class CliApp {
