@@ -1,12 +1,24 @@
+plugins {
+    id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '2.0.3'
+}
 group 'com.github.erikseguinte'
 version '0.1'
 
+
+
+mainClassName = 'com.github.erikseguinte.sccCodeathon2018.cli.CliApp'
 apply plugin: 'java'
 
 sourceCompatibility = 1.8
 
+
+apply plugin: 'com.github.johnrengelman.shadow'
+
 repositories {
     mavenCentral()
+    jcenter()
 }
 
 dependencies {
