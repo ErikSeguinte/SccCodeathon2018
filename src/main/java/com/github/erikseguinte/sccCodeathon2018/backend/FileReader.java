@@ -16,40 +16,42 @@ import java.util.stream.Stream;
 public class FileReader {
 
 
-    public static HashSet<String> getClassesFromResource(String filename){
+    public static HashSet<String> getClassesFromResource(String filename) {
 
-        HashSet<String> classes = new HashSet<>();
         ClassLoader classLoader = FileReader.class.getClassLoader();
 
+        HashSet<String> classes = null;
         // Try-with-resources
-        try(Scanner scanner = new Scanner(classLoader.getResourceAsStream(filename))) {
-
-            while(scanner.hasNextLine()){
-                String thisClass = scanner.nextLine();
-
-                thisClass = cleanUpString(thisClass);
-
-                classes.add(thisClass);
-            }
+        try (Scanner scanner = new Scanner(classLoader.getResourceAsStream(filename))) {
+            classes = scan(scanner);
         }
 
         return classes;
     }
 
-    public static HashSet<String> getClassesfromPath(String filename){
+    public static HashSet<String> scan(Scanner scanner) {
 
         HashSet<String> classes = new HashSet<>();
 
+        while (scanner.hasNextLine()) {
+            String thisClass = scanner.nextLine();
+
+            thisClass = cleanUpString(thisClass);
+
+            classes.add(thisClass);
+        }
+
+        return classes;
+
+    }
+
+    public static HashSet<String> getClassesfromPath(String filename) {
+        HashSet<String> classes = null;
+
         // Try-with-resources
-        try(Scanner scanner = new Scanner(new FileInputStream(filename))) {
+        try (Scanner scanner = new Scanner(new FileInputStream(filename))) {
+            classes = scan(scanner);
 
-            while(scanner.hasNextLine()){
-                String thisClass = scanner.nextLine();
-
-                thisClass = cleanUpString(thisClass);
-
-                classes.add(thisClass);
-            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -57,7 +59,7 @@ public class FileReader {
         return classes;
     }
 
-    private static String cleanUpString(String string){
+    private static String cleanUpString(String string) {
 
         string = string.trim();
 
@@ -65,12 +67,12 @@ public class FileReader {
         string = string.toLowerCase();
 
         // remove internal spaces
-        string = string.replaceAll("\\s","");
+        string = string.replaceAll("\\s", "");
 
         return string;
     }
 
-    public static ArrayList<HashSet<String>> readPastSchedules(){
+    public static ArrayList<HashSet<String>> readPastSchedules() {
 
         HashSet<String> spring = new HashSet<>();
         HashSet<String> summer = new HashSet<>();
@@ -84,9 +86,9 @@ public class FileReader {
                     .forEach(path -> {
                         String fileName = path.getFileName().toString();
 
-                        if (fileName.startsWith("cisp-sp")){
-                          spring.addAll(getClassesfromPath(path.toString()));
-                        } else if ( fileName.startsWith("cisp-su")) {
+                        if (fileName.startsWith("cisp-sp")) {
+                            spring.addAll(getClassesfromPath(path.toString()));
+                        } else if (fileName.startsWith("cisp-su")) {
                             summer.addAll(getClassesfromPath(path.toString()));
                         } else {
                             fall.addAll(getClassesfromPath(path.toString()));
