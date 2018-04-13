@@ -23,7 +23,8 @@ public class CliApp {
         }
 
         // Only used to process the historical data files.
-        //writeSemesterObjects();
+        // not used once jarred
+        writeSemesterObjects();
 
         readSemesterObjects();
 
