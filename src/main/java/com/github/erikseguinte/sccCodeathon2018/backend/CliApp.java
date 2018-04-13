@@ -1,9 +1,6 @@
 package com.github.erikseguinte.sccCodeathon2018.backend;
 
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -25,7 +22,10 @@ public class CliApp {
             System.out.println(thisClass);
         }
 
-        writeSemesterObjects();
+        // Only used to process the historical data files.
+        //writeSemesterObjects();
+
+        readSemesterObjects();
 
     }
 
@@ -48,6 +48,24 @@ public class CliApp {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void readSemesterObjects(){
+
+        ClassLoader classLoader = CliApp.class.getClassLoader();
+
+        try (ObjectInputStream inputStream = new ObjectInputStream(classLoader.getResourceAsStream("data/semesters"))){
+            semesters = (ArrayList<Semester>) inputStream.readObject();
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+
+        semesters.forEach(Semester::printClasses);
     }
 
 

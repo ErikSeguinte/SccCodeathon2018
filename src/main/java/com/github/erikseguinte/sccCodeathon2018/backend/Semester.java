@@ -20,4 +20,9 @@ public class Semester implements Serializable {
     public boolean isOffered(String thisClass){
         return classesOffered.contains(thisClass);
     }
+
+    public void printClasses(){
+        classesOffered.forEach(System.out::println);
+        System.out.println();
+    }
 }
