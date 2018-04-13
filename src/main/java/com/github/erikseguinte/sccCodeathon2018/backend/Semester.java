@@ -11,17 +11,17 @@ public class Semester implements Serializable {
         addClasses(classesOffered);
     }
 
-    public void addClasses(HashSet<String> classesThisSemester){
+    public void addClasses(HashSet<String> classesThisSemester) {
 
         this.classesOffered.addAll(classesThisSemester);
 
     }
 
-    public boolean isOffered(String thisClass){
+    public boolean isOffered(String thisClass) {
         return classesOffered.contains(thisClass);
     }
 
-    public void printClasses(){
+    public void printClasses() {
         classesOffered.forEach(System.out::println);
         System.out.println();
     }

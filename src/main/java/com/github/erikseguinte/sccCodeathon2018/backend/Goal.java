@@ -10,13 +10,13 @@ public class Goal {
         this.requiredClasses = requiredClasses;
     }
 
-    public HashSet<String> compareToRequirements(HashSet<String> classesTaken){
+    public HashSet<String> compareToRequirements(HashSet<String> classesTaken) {
 
         HashSet<String> classesRemaining = new HashSet<>();
 
 
-        for (String thisClass: requiredClasses){
-            if (!classesTaken.contains(thisClass)){
+        for (String thisClass : requiredClasses) {
+            if (!classesTaken.contains(thisClass)) {
                 classesRemaining.add(thisClass);
             }
         }

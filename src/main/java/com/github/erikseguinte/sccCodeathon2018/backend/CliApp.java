@@ -1,6 +1,9 @@
 package com.github.erikseguinte.sccCodeathon2018.backend;
 
-import java.io.*;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -18,7 +21,7 @@ public class CliApp {
 
         HashSet<String> classes = goal.compareToRequirements(classesTaken);
 
-        for (String thisClass:classes) {
+        for (String thisClass : classes) {
             System.out.println(thisClass);
         }
 
@@ -30,18 +33,18 @@ public class CliApp {
 
     }
 
-    public static void writeSemesterObjects(){
+    public static void writeSemesterObjects() {
         semesters = new ArrayList<>();
 
-        ArrayList<HashSet<String>> semesterSets= FileReader.readPastSchedules();
+        ArrayList<HashSet<String>> semesterSets = FileReader.readPastSchedules();
 
-        for (HashSet<String> set : semesterSets){
+        for (HashSet<String> set : semesterSets) {
             Semester semester = new Semester(set);
             semesters.add(semester);
 
         }
 
-        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("src/main/resources/data/semesters"))){
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("src/main/resources/data/semesters"))) {
             outputStream.writeObject(semesters);
 
         } catch (IOException e) {
@@ -49,11 +52,11 @@ public class CliApp {
         }
     }
 
-    public static void readSemesterObjects(){
+    public static void readSemesterObjects() {
 
         ClassLoader classLoader = CliApp.class.getClassLoader();
 
-        try (ObjectInputStream inputStream = new ObjectInputStream(classLoader.getResourceAsStream("data/semesters"))){
+        try (ObjectInputStream inputStream = new ObjectInputStream(classLoader.getResourceAsStream("data/semesters"))) {
             semesters = (ArrayList<Semester>) inputStream.readObject();
 
         } catch (ClassNotFoundException | IOException e) {

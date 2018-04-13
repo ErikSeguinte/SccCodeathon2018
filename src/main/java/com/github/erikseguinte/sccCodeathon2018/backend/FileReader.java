@@ -1,16 +1,14 @@
 package com.github.erikseguinte.sccCodeathon2018.backend;
 
-import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.nio.file.*;
-import java.util.*;
-import java.util.regex.Pattern;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Scanner;
 import java.util.stream.Stream;
 
 public class FileReader {
@@ -35,9 +33,7 @@ public class FileReader {
 
         while (scanner.hasNextLine()) {
             String thisClass = scanner.nextLine();
-
             thisClass = cleanUpString(thisClass);
-
             classes.add(thisClass);
         }
 
