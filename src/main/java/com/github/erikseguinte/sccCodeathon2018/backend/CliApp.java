@@ -1,10 +1,17 @@
 package com.github.erikseguinte.sccCodeathon2018.backend;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.HashSet;
 
 public class CliApp {
+
+    static ArrayList<Semester> semesters;
 
     public static void main(String[] args) {
         Path currentRelativePath = Paths.get("");
@@ -18,5 +25,30 @@ public class CliApp {
             System.out.println(thisClass);
         }
 
+        writeSemesterObjects();
+
     }
+
+    public static void writeSemesterObjects(){
+        semesters = new ArrayList<>();
+
+        ArrayList<HashSet<String>> semesterSets= FileReader.readPastSchedules();
+
+        for (HashSet<String> set : semesterSets){
+            Semester semester = new Semester(set);
+            semesters.add(semester);
+
+        }
+
+        try (ObjectOutputStream outputStream = new ObjectOutputStream(new FileOutputStream("src/main/resources/data/semesters"))){
+            outputStream.writeObject(semesters);
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }
