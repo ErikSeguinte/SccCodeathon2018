@@ -17,19 +17,20 @@ public class CliApp {
         Path currentRelativePath = Paths.get("");
         String s = currentRelativePath.toAbsolutePath().toString();
         HashSet<String> classesTaken = FileReader.getClassesFromResource("text/Students/w1234567.txt");
-        Goal goal = new Goal(FileReader.getClassesFromResource("text/Students/w1235813.txt"));
+        Goal goal = new Goal(FileReader.getClassesFromResource("text/goals/ascs.txt"));
 
         HashSet<String> classes = goal.compareToRequirements(classesTaken);
 
-        for (String thisClass : classes) {
-            System.out.println(thisClass);
-        }
+
+
 
         // Only used to process the historical data files.
         // not used once jarred
-        writeSemesterObjects();
+        //writeSemesterObjects();
 
         readSemesterObjects();
+
+        goal.printGoal();
 
     }
 
@@ -63,7 +64,6 @@ public class CliApp {
             e.printStackTrace();
         }
 
-        semesters.forEach(Semester::printClasses);
     }
 
 

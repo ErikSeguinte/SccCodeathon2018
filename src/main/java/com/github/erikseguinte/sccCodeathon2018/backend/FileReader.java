@@ -33,8 +33,15 @@ public class FileReader {
 
         while (scanner.hasNextLine()) {
             String thisClass = scanner.nextLine();
+
+            if (thisClass.equalsIgnoreCase("A minimum of 6 units from the following:")){
+                break;
+            }
             thisClass = cleanUpString(thisClass);
-            classes.add(thisClass);
+
+            if (thisClass.startsWith("cis")) {
+                classes.add(thisClass);
+            }
         }
 
         return classes;

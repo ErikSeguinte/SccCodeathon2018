@@ -23,4 +23,8 @@ public class Goal {
         return classesRemaining;
 
     }
+
+    public void printGoal(){
+        requiredClasses.forEach(System.out::println);
+    }
 }
