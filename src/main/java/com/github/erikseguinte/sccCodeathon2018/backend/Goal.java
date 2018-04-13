@@ -10,6 +10,10 @@ public class Goal {
         this.requiredClasses = requiredClasses;
     }
 
+    public void setElectives(HashSet<String> electives) {
+        this.electives = electives;
+    }
+
     public HashSet<String> compareToRequirements(HashSet<String> classesTaken) {
 
         HashSet<String> classesRemaining = new HashSet<>();
@@ -25,6 +29,10 @@ public class Goal {
     }
 
     public void printGoal(){
+        System.out.println("required");
         requiredClasses.forEach(System.out::println);
+
+        System.out.println("Elective");
+        electives.forEach(System.out::println);
     }
 }

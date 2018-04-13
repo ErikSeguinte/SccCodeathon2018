@@ -22,6 +22,7 @@ public class CliApp {
         HashSet<String> classes = goal.compareToRequirements(classesTaken);
 
 
+        goal.setElectives(FileReader.getElectives("text/goals/ascs.txt"));
 
 
         // Only used to process the historical data files.
@@ -31,7 +32,6 @@ public class CliApp {
         readSemesterObjects();
 
         goal.printGoal();
-
     }
 
     public static void writeSemesterObjects() {

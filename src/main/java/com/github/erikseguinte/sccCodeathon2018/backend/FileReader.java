@@ -34,7 +34,7 @@ public class FileReader {
         while (scanner.hasNextLine()) {
             String thisClass = scanner.nextLine();
 
-            if (thisClass.equalsIgnoreCase("A minimum of 6 units from the following:")){
+            if (thisClass.equalsIgnoreCase("A minimum of 6 units from the following:")) {
                 break;
             }
             thisClass = cleanUpString(thisClass);
@@ -46,6 +46,35 @@ public class FileReader {
 
         return classes;
 
+    }
+
+    public static HashSet<String> getElectives(String filename) {
+
+        ClassLoader classLoader = FileReader.class.getClassLoader();
+
+        HashSet<String> classes = new HashSet<>();
+        // Try-with-resources
+        try (Scanner scanner = new Scanner(classLoader.getResourceAsStream(filename))) {
+
+            boolean start = false;
+            while (scanner.hasNextLine()) {
+                String thisClass = scanner.nextLine();
+
+                if (!start) {
+                    if (thisClass.equalsIgnoreCase("A minimum of 6 units from the following:")){
+                        start = true;
+                    }
+                } else {
+                    thisClass = cleanUpString(thisClass);
+
+                    if (thisClass.startsWith("cis")) {
+                        classes.add(thisClass);
+                    }
+                }
+            }
+        }
+
+        return classes;
     }
 
     public static HashSet<String> getClassesfromPath(String filename) {
