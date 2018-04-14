@@ -31,7 +31,10 @@ public class CliApp {
 
         readSemesterObjects();
 
-        goal.printGoal();
+       Student student = new Student();
+       student.setClassesTaken(classesTaken);
+       student.setGoal(goal);
+
     }
 
     public static void writeSemesterObjects() {

@@ -10,6 +10,14 @@ public class Goal {
         this.requiredClasses = requiredClasses;
     }
 
+    public void setRequiredClasses(HashSet<String> requiredClasses) {
+        if (requiredClasses.contains("cisp400cisp401")){
+            requiredClasses.remove("cisp400cisp401");
+            requiredClasses.add("cisp400");
+            requiredClasses.add("cisp401");
+        }
+    }
+
     public void setElectives(HashSet<String> electives) {
         this.electives = electives;
     }
