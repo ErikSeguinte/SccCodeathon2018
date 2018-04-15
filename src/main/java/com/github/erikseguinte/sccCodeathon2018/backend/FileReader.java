@@ -39,7 +39,7 @@ public class FileReader {
             }
             thisClass = cleanUpString(thisClass);
 
-            if (thisClass.startsWith("cis")) {
+            if (thisClass.startsWith("CIS")) {
                 classes.add(thisClass);
             }
         }
@@ -67,7 +67,7 @@ public class FileReader {
                 } else {
                     thisClass = cleanUpString(thisClass);
 
-                    if (thisClass.startsWith("cis")) {
+                    if (thisClass.startsWith("CIS")) {
                         classes.add(thisClass);
                     }
                 }
@@ -94,11 +94,7 @@ public class FileReader {
     private static String cleanUpString(String string) {
 
         string = string.trim();
-
-        //lower Case
-        string = string.toLowerCase();
-
-        // remove internal spaces
+        string = string.toUpperCase();
         string = string.replaceAll("\\s", "");
 
         return string;

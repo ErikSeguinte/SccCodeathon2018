@@ -6,15 +6,21 @@ public class Goal {
     private HashSet<String> requiredClasses;
     private HashSet<String> electives;
 
-    Goal(HashSet<String> requiredClasses) {
+
+    public Goal(HashSet<String> requiredClasses) {
         this.requiredClasses = requiredClasses;
+        processCisp400And401();
     }
 
-    public void setRequiredClasses(HashSet<String> requiredClasses) {
-        if (requiredClasses.contains("cisp400cisp401")){
-            requiredClasses.remove("cisp400cisp401");
-            requiredClasses.add("cisp400");
-            requiredClasses.add("cisp401");
+    public HashSet<String> getElectives() {
+        return electives;
+    }
+
+    public void processCisp400And401() {
+        if (requiredClasses.contains("CISP400CISP401")){
+            requiredClasses.remove("CISP400CISP401");
+            requiredClasses.add("CISP400");
+            requiredClasses.add("CISP401");
         }
     }
 
@@ -31,6 +37,11 @@ public class Goal {
             if (!classesTaken.contains(thisClass)) {
                 classesRemaining.add(thisClass);
             }
+        }
+
+        if (classesTaken.contains("CISP400") || classesTaken.contains("CISP401")){
+            classesRemaining.remove("CISP400");
+            classesRemaining.remove("CISP401");
         }
         return classesRemaining;
 
